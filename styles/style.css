@@ -1,0 +1,125 @@
+:root{
+  --dark-main:#1f2335;
+  --text:#c0caf5;
+  /*chocoBrown x blue;
+  --dark-main:#B2d1ee;
+  --text:#9a5311;*/
+  /*Blue x black
+  --dark-main:#7177f0;
+  --text:#1e1818;
+*/
+  --font:salish lodge;
+  --font2:"04b";
+  --main-accent:#717ae8 ;
+}
+main{
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  text-align: center;
+}
+
+body{
+  background-color: var(--dark-main);
+  overflow: hidden;
+}
+.welcome{
+  color:var(--text);
+  font-family: var(--font2);
+  font-size: 3rem;
+}
+
+.title{
+  color:  var(--main-accent);
+  font-size: 1.1rem;
+  font-family:var(--font2);
+  font-weight: lighter;
+  text-align: center;
+}
+.giticn{
+  width: 5rem;
+}
+a{
+  text-decoration: none;
+}
+.link-item{
+  color:var(--text);
+  font-family:var(--font2);
+  width: 10rem;
+  height: 8rem;
+  background-color: rgba(155, 155, 155, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+}
+
+
+.figure{
+    width: 150px;
+    overflow: hidden;
+    border-radius: 2px; /* Adjust as needed for rounded corners */
+    font-family: var(--font2); /* Replace with your actual font family */
+    display:flex-col;
+}
+
+.figure:hover{
+    transform:translate(7px,7px);
+    transition:all 0.3s ease-out;
+}
+
+
+.figure-caption {
+    padding: 8px; /* Adjust padding as needed */
+    /*background-color: rgba(157, 189, 255, 0.73) ;*/
+     backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    font-size:0.9rem;
+    color:var(--text);
+    text-align:center;
+  }
+#clock{
+  font-family:var(--font);
+  color: var(--text);
+  font-size: 3rem;
+}
+.date{
+font-size:1.5rem;
+color: var(--text);
+font-family:var(--font);
+}
+.userImage{
+width: 30rem;
+height: 30rem;
+float: left;
+  margin-right: 1.5rem;
+border-radius: 20% 20% / 20% 20%;
+object-fit:contain;
+}
+.datePrefix{
+font-family:var(--font);
+color:var(--text);
+font-size:1.5rem;
+}
+
+.linksContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+.Image{
+float:left;
+}
+.links{
+display: flex;
+
+}
+.temp{
+font-size: 1.3rem;
+font-family:var(--font);
+color:var(--text);
+}
+.feels{
+font-size: 1.3rem;
+font-family:var(--font);
+color:var(--text);
+}
