@@ -1,6 +1,6 @@
 :root{
-  --dark-main:black;
-  --text:red;
+  --dark-main:#efeec4;
+  --text:#8ec2dc;
   /*chocoBrown x blue;
   --dark-main:#B2d1ee;
   --text:#9a5311;*/
@@ -10,7 +10,7 @@
 */
   --font:salish lodge;
   --font2:"04b";
-  --main-accent:red ;
+  --main-accent:#8ec2dc ;
 }
 main{
   height: 100vh;

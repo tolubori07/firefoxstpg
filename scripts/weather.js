@@ -5,7 +5,7 @@ const get_weather = async () => {
     const data = await response.json();
     console.log(data.main.temp);   
     document.getElementById('temp').innerHTML = "Temperature: "+data.main.temp+" ºc | "
-    document.getElementById('feelsLike').innerHTML = "Feels like " + data.main.feels_like +"ºc"
+    document.getElementById('feelsLike').innerHTML = `Feels like ${data.main.feels_like} ºc`
 };
 get_weather()
 setInterval(get_weather,3600000)
