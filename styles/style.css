@@ -10,13 +10,12 @@
 */
   --font:salish lodge;
   --font2:"04b";
-  --main-accent:#717ae8 ;
+  --main-accent:red ;
 }
 main{
   height: 100vh;
   width: 100vw;
   margin: 0;
-  display: flex;
   text-align: center;
 }
 
