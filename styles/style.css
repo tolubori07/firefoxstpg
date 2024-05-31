@@ -79,14 +79,14 @@ a{
     text-align:center;
   }
 #clock{
-  font-family:var(--font);
+  font-family:var(--font2);
   color: var(--text);
   font-size: 3rem;
 }
 .date{
 font-size:1.5rem;
 color: var(--text);
-font-family:var(--font);
+font-family:var(--font2);
 }
 .userImage{
 width: 30rem;
@@ -97,7 +97,7 @@ border-radius: 20% 20% / 20% 20%;
 object-fit:contain;
 }
 .datePrefix{
-font-family:var(--font);
+font-family:var(--font2);
 color:var(--text);
 font-size:1.5rem;
 }
@@ -115,11 +115,11 @@ display: flex;
 }
 .temp{
 font-size: 1.3rem;
-font-family:var(--font);
+font-family:var(--font2);
 color:var(--text);
 }
 .feels{
 font-size: 1.3rem;
-font-family:var(--font);
+font-family:var(--font2);
 color:var(--text);
 }
