@@ -27,10 +27,10 @@ export default function Homepage() {
   }, []);
 
   return (
-    <div className="h-screen bg-[#8998ee] text-black p-10 font-mono">
+    <div className="h-screen bg-[#8998ee] text-black p-10 font-body">
       <div className="max-w-3xl mx-auto text-center border-4 border-black p-6 bg-[#cfd8dc] shadow-lg">
         <pre className="text- font-bold ">{banner}</pre>
-        <p className="text-lg mt-2">Today is {time.toLocaleDateString()}</p>
+        <p className="text-lg mt-2 font-body">Today is {time.toLocaleDateString()}</p>
         <h2 className="text-4xl font-bold mt-4">{time.toLocaleTimeString()}</h2>
         <p className="mt-4">
           Temperature: {temperature ?? "-"}°C | Feels Like: {feelsLike ?? "-"}°C
