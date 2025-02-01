@@ -4,27 +4,32 @@ export default function Homepage() {
   const [time, setTime] = useState(new Date());
   const [temperature, setTemperature] = useState(null);
   const [feelsLike, setFeelsLike] = useState(null);
+  const [banner, setBanner] = useState("");
+  const getBanner = () => {
+    setBanner(asciiBanners[Math.floor(Math.random() * asciiBanners.length)]);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
+    getBanner();
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=51.5074&longitude=-0.1278&current_weather=true",
+      "https://api.openweathermap.org/data/2.5/weather?q=Stoke-On-Trent&appid=c5b6cf05e8525851c86c0d72366bded7&units=metric",
     )
       .then((res) => res.json())
       .then((data) => {
-        setTemperature(data.current_weather.temperature);
-        setFeelsLike(data.current_weather.apparent_temperature);
+        setTemperature(data.main.temp);
+        setFeelsLike(data.main.feels_like);
       });
   }, []);
 
   return (
-    <div className="h-screen bg-[#90a4ae] text-black p-10 font-mono">
+    <div className="h-screen bg-[#8998ee] text-black p-10 font-mono">
       <div className="max-w-3xl mx-auto text-center border-4 border-black p-6 bg-[#cfd8dc] shadow-lg">
-        <h1 className="text-5xl font-bold">HELLO JAABIR</h1>
+        <pre className="text- font-bold ">{banner}</pre>
         <p className="text-lg mt-2">Today is {time.toLocaleDateString()}</p>
         <h2 className="text-4xl font-bold mt-4">{time.toLocaleTimeString()}</h2>
         <p className="mt-4">
@@ -70,17 +75,25 @@ const sections = [
     title: "School Links",
     links: [
       { name: "Satchel One", url: "https://www.satchelone.com", emoji: "📘" },
-      { name: "PHT", url: "#", emoji: "📖" },
+      { name: "PMT", url: "https://physicsandmathstutor.com", emoji: "📖" },
       { name: "AnkiWeb", url: "https://ankiweb.net", emoji: "❓" },
-      { name: "A-Level Computing", url: "#", emoji: "💾" },
-      { name: "Revisely", url: "#", emoji: "📚" },
+      {
+        name: "A-Level Computing",
+        url: "https://en.wikibooks.org/wiki/A-level_Computing/WJEC_(Eduqas)",
+        emoji: "💾",
+      },
+      { name: "Revisely", url: "https://www.revisely.com/", emoji: "📚" },
     ],
   },
   {
     title: "Reading",
     links: [
       { name: "Z-Library", url: "https://z-lib.is", emoji: "📚" },
-      { name: "HyperMedia Systems", url: "#", emoji: "🖥️" },
+      {
+        name: "HyperMedia Systems",
+        url: "https://hypermedia.systems/book/contents/",
+        emoji: "🖥️",
+      },
       { name: "Libgenesis", url: "https://libgen.is", emoji: "📕" },
     ],
   },
@@ -93,3 +106,27 @@ const sections = [
     ],
   },
 ];
+
+const asciiBanners = [
+  `
+ █████       █████ █████ ███████████ ██████████
+░░███       ░░███ ░░███ ░░███░░░░░░█░░███░░░░░█
+ ░███        ░░███ ███   ░███   █ ░  ░███  █ ░ 
+ ░███         ░░█████    ░███████    ░██████   
+ ░███          ░░███     ░███░░░█    ░███░░█   
+ ░███      █    ░███     ░███  ░     ░███ ░   █
+ ███████████    █████    █████       ██████████
+░░░░░░░░░░░    ░░░░░    ░░░░░       ░░░░░░░░░░
+  `,
+
+  `
+   █████████     ███████   
+  ███░░░░░███  ███░░░░░███ 
+ ███     ░░░  ███     ░░███
+░███         ░███      ░███
+░███    █████░███      ░███
+░░███  ░░███ ░░███     ███ 
+ ░░█████████  ░░░███████░  
+  ░░░░░░░░░     ░░░░░░░    
+  `,
+] 
