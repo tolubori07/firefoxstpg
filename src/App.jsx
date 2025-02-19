@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
 
-export default function Homepage() {
+export default function App() {
   const [time, setTime] = useState(new Date());
+  const [timeMode, setTimeMode] = useState("am");
+  const hour = time.getUTCHours();
+  const minutes = time.getUTCMinutes();
+  const seconds = time.getUTCSeconds();
   const [temperature, setTemperature] = useState(null);
   const [feelsLike, setFeelsLike] = useState(null);
-  const [banner, setBanner] = useState("");
-  const getBanner = () => {
-    setBanner(asciiBanners[Math.floor(Math.random() * asciiBanners.length)]);
-  };
+  const [weather, setWeather] = useState("");
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
-    getBanner();
+    if (hour >= 12) {
+      setTimeMode("pm");
+    } else {
+      setTimeMode("am");
+    }
     return () => clearInterval(interval);
   }, []);
 
@@ -23,38 +29,64 @@ export default function Homepage() {
       .then((data) => {
         setTemperature(data.main.temp);
         setFeelsLike(data.main.feels_like);
+        setWeather(data.weather[0].main);
       });
   }, []);
 
   return (
-    <div className="h-screen bg-[#8998ee] text-black p-10 font-body">
-      <div className="max-w-3xl mx-auto text-center border-4 border-black p-6 bg-[#cfd8dc] shadow-lg">
-        <pre className="text- font-bold ">{banner}</pre>
-        <p className="text-lg mt-2 font-body">Today is {time.toLocaleDateString()}</p>
-        <h2 className="text-4xl font-bold mt-4">{time.toLocaleTimeString()}</h2>
-        <p className="mt-4">
-          Temperature: {temperature ?? "-"}°C | Feels Like: {feelsLike ?? "-"}°C
-        </p>
+    <div className="bg-bg h-screen p-10">
+      <div className="h-[75%]">
+        <img src="/lake.jpg" className="h-full w-full rounded-3xl" />
       </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 text-center">
-        {sections.map(({ title, links }) => (
-          <div
-            key={title}
-            className="border-4 border-black p-4 bg-white shadow-md"
-          >
-            <h3 className="text-xl font-bold">{title}</h3>
-            <ul className="mt-2 space-y-1">
-              {links.map(({ name, url, emoji }) => (
-                <li key={name}>
-                  <a href={url} className="hover:underline text-lg">
-                    {emoji} {name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+      <div>
+        <div className="text-text p-8 font-body flex gap-24">
+          <div>
+            <p className="text-8xl mt-2 font-body flex items-center">
+              {hour > 12 ? hour - 12 : hour}
+              <span className="font-display ml-5">:</span>
+              {minutes < 10 ? "0" + minutes : minutes}
+              <div className="ml-5 inline-flex flex-col text-4xl">
+                <div>{seconds < 10 ? "0" + seconds : seconds}</div>
+                <div>{timeMode}</div>
+              </div>
+            </p>
           </div>
-        ))}
+
+          <div className="text-4xl font-body mt-2">
+            <div className="text-2xl">
+              {time.getDate()}.{time.getMonth()}
+            </div>
+            <div className="">{days[time.getDay()]}</div>
+          </div>
+
+          <div className="text-4xl font-body mt-2">
+            <div className="text-2xl">
+              {temperature}
+              <span className="font-sans">{"º"}</span>C
+            </div>
+            <div className="text-lg">feels like {feelsLike}</div>
+            <div className="text-lg">{weather}</div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 mt-4 ml-12 w-full justify-center">
+            {sections.map(({ title, links }) => (
+              <div key={title} className="w-full flex justify-center">
+                <ul className="space-y-2 text-center">
+                  {links.map(({ name, url }) => (
+                    <li key={name}>
+                      <a
+                        href={url}
+                        className="hover:underline  px-4 py-2 inline-block"
+                      >
+                        {name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -65,36 +97,15 @@ const sections = [
     title: "Code and Docs",
     links: [
       { name: "Github", url: "https://github.com", emoji: "🐱" },
-      { name: "DailyDev", url: "https://daily.dev", emoji: "💻" },
-      { name: "Tailwind CSS", url: "https://tailwindcss.com", emoji: "🎨" },
+      { name: "Tailwind", url: "https://tailwindcss.com", emoji: "🎨" },
       { name: "Bun", url: "https://bun.sh", emoji: "🍞" },
-      { name: "Rust", url: "https://www.rust-lang.org", emoji: "🦀" },
     ],
   },
   {
     title: "School Links",
     links: [
-      { name: "Satchel One", url: "https://www.satchelone.com", emoji: "📘" },
+      { name: "Satchel", url: "https://www.satchelone.com", emoji: "📘" },
       { name: "PMT", url: "https://physicsandmathstutor.com", emoji: "📖" },
-      { name: "AnkiWeb", url: "https://ankiweb.net", emoji: "❓" },
-      {
-        name: "A-Level Computing",
-        url: "https://en.wikibooks.org/wiki/A-level_Computing/WJEC_(Eduqas)",
-        emoji: "💾",
-      },
-      { name: "Revisely", url: "https://www.revisely.com/", emoji: "📚" },
-    ],
-  },
-  {
-    title: "Reading",
-    links: [
-      { name: "Z-Library", url: "https://z-lib.is", emoji: "📚" },
-      {
-        name: "HyperMedia Systems",
-        url: "https://hypermedia.systems/book/contents/",
-        emoji: "🖥️",
-      },
-      { name: "Libgenesis", url: "https://libgen.is", emoji: "📕" },
     ],
   },
   {
@@ -106,27 +117,3 @@ const sections = [
     ],
   },
 ];
-
-const asciiBanners = [
-  `
- █████       █████ █████ ███████████ ██████████
-░░███       ░░███ ░░███ ░░███░░░░░░█░░███░░░░░█
- ░███        ░░███ ███   ░███   █ ░  ░███  █ ░ 
- ░███         ░░█████    ░███████    ░██████   
- ░███          ░░███     ░███░░░█    ░███░░█   
- ░███      █    ░███     ░███  ░     ░███ ░   █
- ███████████    █████    █████       ██████████
-░░░░░░░░░░░    ░░░░░    ░░░░░       ░░░░░░░░░░
-  `,
-
-  `
-   █████████     ███████   
-  ███░░░░░███  ███░░░░░███ 
- ███     ░░░  ███     ░░███
-░███         ░███      ░███
-░███    █████░███      ░███
-░░███  ░░███ ░░███     ███ 
- ░░█████████  ░░░███████░  
-  ░░░░░░░░░     ░░░░░░░    
-  `,
-] 

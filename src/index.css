@@ -1,1 +1,13 @@
 @import "tailwindcss";
+@font-face {
+  font-family: bianzhidai_noBG;
+  src: url("/bianzhidai_noBG-Pearl.otf");
+}
+
+
+@theme {
+  --color-bg: #1a1d1e;
+  --color-text: #abbbc9;
+  --font-body: bianzhidai_noBG;
+  --font-display: bianzhidai_noBG;
+}
