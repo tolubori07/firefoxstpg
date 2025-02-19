@@ -3,8 +3,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        bg: "#1a1d1e",
+        main: "#abbbc9",
+      },
       fontFamily: {
-        body: ["'04b'"],
+        body: ["arcade"],
         display: ["'kosmos'"],
       },
     },
